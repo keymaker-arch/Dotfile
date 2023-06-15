@@ -1,0 +1,142 @@
+* {
+  border: none;
+  font-family: Iosevka Nerd Font;
+  font-size: 12px;
+  min-height: 0;
+  margin: 0;
+}
+
+window#waybar {
+  background: #3b4252;
+  background: #212124;
+  /* background: transparent; */
+  /* background: #002b36; */
+  color: white;
+  opacity: 1;
+}
+
+#workspaces {
+  /* background-color: #373737; */
+  color: white;
+  margin: 0px;
+  /*margin-left: 5px;*/
+  border-radius: 0px;
+  border-right: 1px solid #212124;
+}
+#workspaces button {
+  padding: 0 5px;
+  color: white;
+/*  min-width: 8px;*/
+  border-top: 1px solid #212124;
+  border-bottom: 1px solid #212124;
+  border-left: 1px solid #212124;
+  border-right: 1px solid #212124;
+}
+
+#workspaces button.focused {
+  color: #7aa2f7;
+  border-radius: 1px;
+  border-top: 1px solid #7aa2f7;
+  border-bottom: 1px solid #7aa2f7;
+  border-left: 1px solid #7aa2f7;
+  border-right: 1px solid #7aa2f7;
+}
+
+#workspaces button.active {
+  color: #7aa2f7;
+  border-radius: 1px;
+  border-top: 1px solid #7aa2f7;
+  border-bottom: 1px solid #7aa2f7;
+  border-left: 1px solid #7aa2f7;
+  border-right: 1px solid #7aa2f7;
+}
+#workspaces button:hover {
+  color: white;
+  /* background: #5e81ac; */
+  background: #373737;
+  border-radius: 0px;
+}
+
+
+#battery, #pulseaudio, #network, #temperature,#cpu,#memory,#backlight,#bluetooth, #disk{
+  padding: 0px 0px;
+  margin: 3px 3px;
+  border-radius: 0px 0px 0px 0px;
+}
+
+#cpu {
+  padding-left: 10px;
+  color: #FDD835;
+}
+
+#backlight {
+  color: #B9C244;
+}
+
+#custom-date {
+  color: #8fbcbb;
+}
+
+
+#clock {
+  color: #b48ead;
+  padding: 0px 3px 
+  /* border-radius: 0px 10px 10px 0px; */
+}
+
+#battery {
+  color: #a3be8c;
+  /* border-radius: 10px 0px 0px 10px; */
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: black;
+  }
+}
+
+#battery.charging {
+  color: #a3be8c;
+}
+
+#battery.critical:not(.charging) {
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#network {
+  color: #E57C46;
+  /* border-radius: 0px 10px 10px 0px; */
+}
+
+#memory {
+  color: #42A5F5;
+}
+
+#memory.critical {
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#temperature {
+  color: #4DD0E1;
+}
+
+#disk {
+  color: #E57C46;
+}
+
+#pulseaudio {
+  color: #ebcb8b;
+}

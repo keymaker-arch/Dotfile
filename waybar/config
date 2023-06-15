@@ -1,0 +1,85 @@
+{
+    "position": "bottom", 
+    "modules-left": ["sway/workspaces","cpu", "memory", "temperature", "disk"],
+    "modules-center": [ "clock",],
+    "modules-right": ["network", "pulseaudio", "backlight","battery"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "enable-bar-scroll": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "0",
+        },
+    },
+    "clock": {
+        "format": "{:%a %m-%d %H:%M}",
+        "tooltip": false,
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "tooltip": false,
+        "format": "battery {capacity}%",
+        "format-charging": "charging {capacity}%",
+        "format-plugged": "plugged {capacity}%",
+        "format-full": "full {capacity}%",
+        "max-length": 8,
+    },
+    "network": {
+        "format-wifi": "conn {essid}",
+        "tooltip": false,
+        "format-ethernet": "eth {ipaddr}/{cidr}",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "disconn",
+        "format-disabled": "Disabled",
+        "max-length": 30,
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "tooltip": false,
+        "format-muted": "Muted" ,
+        "format-bluetooth": "{volume}%",
+        "format-icons": {
+            "headphone": "",
+            "default": ["", "", ""],
+        },
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+        "critical-threshold": 70,
+        "format-critical": "temp {temperatureC}°C",
+        "format": "temp {temperatureC}°C"
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "CPU {}%"
+    },
+    "memory": {
+        "states": {
+            "critical": 90,
+        },
+        "interval": 1,
+        "format": "MEM {}%",
+        "max-length": 8,
+    },
+    "disk": {
+	"interval": 30,
+	"format": "DISK {percentage_used}%"
+    },
+    "backlight": {
+	"device": "intel_backlight",
+	"format": "BACKLIGHT {percent}%"
+    }
+}

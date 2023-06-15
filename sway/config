@@ -1,0 +1,204 @@
+
+############################ global ############################
+# Mod4: start/windows key
+set $mod Mod4
+
+# system font
+font pango Bold 8
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term alacritty
+set $menu wofi --show run --style /home/han/.config/wofi/style.css
+
+# default wallpaper
+# output * bg ~/Downloads/wallpapers/cyber_universe.jpg fill
+
+# status bar
+bar {
+    swaybar_command waybar
+}
+
+# input method
+exec fcitx5 
+
+# system clipboard
+exec wl-paste -t text --watch clipman store
+exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
+
+# idle behavior: lock screen in 10 min, suspend in 30 min if not charging
+exec swayidle -w timeout 600 'swaylock -f -i ~/Downloads/wallpapers/cyber_monster_mouth.jpeg' 
+exec swayidle -w timeout 1800 '~/.config/sway/bin/suspend.sh'
+
+# dbus env var, make waybar start immediately
+exec hash dbus-update-activation-environment 2>/dev/null && \
+    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# window title bar
+for_window [title=".*"] title_format %title
+title_align left
+titlebar_border_thickness 0
+titlebar_padding 3 2
+
+
+############################ function shortcuts ############################
+bindsym $mod+Return exec $term
+bindsym $mod+p reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+q exec ~/.config/sway/bin/kill-behavior.py
+bindsym $mod+d exec $menu
+bindsym $mod+t exec $term
+bindsym $mod+Ctrl+Mod1+l exec swaylock
+
+
+############################ touchpad gesture ############################
+bindgesture swipe:right workspace prev 
+bindgesture swipe:left workspace next
+
+
+############################ window/focus control ############################
+# a repeating workspace swith will swith back to last workspace
+workspace_auto_back_and_forth yes
+
+#bindsym Mod1+Tab exec ~/.config/sway/bin/tab-behavior.py
+
+# move window between workspace
+bindsym $mod+Control+1 move container to workspace number 1; workspace number 1;
+bindsym $mod+Control+2 move container to workspace number 2; workspace number 2;
+bindsym $mod+Control+3 move container to workspace number 3; workspace number 3;
+bindsym $mod+Control+4 move container to workspace number 4; workspace number 4;
+bindsym $mod+Control+5 move container to workspace number 5; workspace number 5;
+bindsym $mod+Control+6 move container to workspace number 6; workspace number 6;
+bindsym $mod+Control+7 move container to workspace number 7; workspace number 7;
+bindsym $mod+Control+8 move container to workspace number 8; workspace number 8;
+bindsym $mod+Control+9 move container to workspace number 9; workspace number 9;
+bindsym $mod+Control+0 move container to workspace number 10; workspace number 10;
+bindsym $mod+Control+Left move container to workspace prev; workspace prev
+bindsym $mod+Control+Right move container to workspace next; workspace next
+
+# move window between monitor
+bindsym $mod+Control+Shift+Right move workspace to output right
+bindsym $mod+Control+Shift+Left move workspace to output left
+bindsym $mod+Control+Shift+Down move workspace to output down
+bindsym $mod+Control+Shift+Up move workspace to output up
+
+# move window position within the workspace
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+
+# Switch between different layout styles
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+v splitv
+bindsym $mod+Shift+h splith
+
+# Make the current focused window fullscreen
+bindsym $mod+f fullscreen
+
+# make current focused window floating
+bindsym $mod+space floating toggle
+
+# hold modifier key, move floating window with left click and resize with right click
+floating_modifier $mod normal
+
+# move focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Tab focus next
+
+# workspace switch
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+bindsym $mod+Left  workspace prev
+bindsym $mod+Right workspace next
+
+
+############################ Scratchpad ############################
+bindsym $mod+x move scratchpad
+bindsym $mod+s exec swaymsg scratchpad show || ~/.config/sway/bin/scratchpad.sh
+
+for_window [app_id="scratchpad"] {
+    floating enable,resize set 600 600
+}
+
+############################ cursor ############################
+# cursor style
+seat seat0 xcursor_theme default 15
+
+# touchpad
+input "type:touchpad" {
+    tap enabled
+    drag enabled
+    natural_scroll enabled
+    scroll_factor 0.8
+    dwt enable
+    accel_profile "adaptive"
+    pointer_accel -0.3
+}
+
+# mouse
+input "type:pointer" {
+    pointer_accel -0.5
+    accel_profile "flat"
+}
+
+############################ keyboard function key ############################
+bindswitch --reload --locked lid:on output eDP-1 disable
+bindswitch --reload --locked lid:off output eDP-1 enable
+bindsym --locked XF86AudioRaiseVolume exec sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume @DEFAULT_SINK@ +2%"
+bindsym --locked XF86AudioLowerVolume exec sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume @DEFAULT_SINK@ -2%"
+bindsym --locked XF86AudioMute exec sh -c "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+bindsym --locked XF86MonBrightnessDown exec "sudo light -U 5"
+bindsym --locked XF86MonBrightnessUp exec "sudo light -A 5"
+bindsym --locked Print exec grim -g "$(slurp)" - | wl-copy
+
+
+############################ monitor configuration ############################
+output eDP-1 {
+    pos 0 1080
+}
+
+output 'Dell Inc. DELL P2723QE 4VZT9N3' {
+    # resolution 3840x2160
+    scale 2.0
+    pos 0 0
+    # bg ~/Downloads/wallpapers/city_from_sky.jpg fill
+}
+
+# bind workspace to specific monitor
+workspace 1 output DP-1
+workspace 2 output DP-1
+workspace 3 output DP-1
+workspace 4 output DP-1
+workspace 5 output DP-1
+workspace 6 output DP-1
+workspace 7 output DP-1
+workspace 8 output DP-1
+workspace 9 output DP-1
+workspace 10 output eDP-1
+
+
+############################ border and gaps ############################
+default_border pixel 1
+default_floating_border pixel 1
+hide_edge_borders smart
+client.focused #2e9ef4 #7AA2F7 #FFFFFF #7AA2F7
+
+gaps inner 3
+gaps outer 3
+smart_gaps on
