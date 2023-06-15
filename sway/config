@@ -12,10 +12,15 @@ set $up k
 set $right l
 
 set $term alacritty
-set $menu wofi --show run --style /home/han/.config/wofi/style.css
+set $menu wofi --show run --style ~/.config/wofi/style.css
 
-# default wallpaper
-# output * bg ~/Downloads/wallpapers/cyber_universe.jpg fill
+# wallpapers path
+set $wallpaper1 ~/.config/wallpapers/cyber_universe.jpg
+set $wallpaper2 ~/.config/wallpapers/cyber_monster_mouth.jpeg
+set $wallpaper3 ~/.config/wallpapers/city_from_sky.jpeg
+
+# set default wallpapper [swaybg needed]
+output * bg $wallpaper1 fill
 
 # status bar
 bar {
@@ -23,14 +28,14 @@ bar {
 }
 
 # input method
-exec fcitx5 
+# exec fcitx5 
 
 # system clipboard
-exec wl-paste -t text --watch clipman store
-exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
+# exec wl-paste -t text --watch clipman store
+# exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
 
-# idle behavior: lock screen in 10 min, suspend in 30 min if not charging
-exec swayidle -w timeout 600 'swaylock -f -i ~/Downloads/wallpapers/cyber_monster_mouth.jpeg' 
+# idle behavior: lock screen in 10 min, suspend in 30 min if not charging [swayidle and swaylock needed]
+exec swayidle -w timeout 600 'swaylock -f -i $wallpeper2' 
 exec swayidle -w timeout 1800 '~/.config/sway/bin/suspend.sh'
 
 # dbus env var, make waybar start immediately
@@ -63,7 +68,8 @@ bindgesture swipe:left workspace next
 # a repeating workspace swith will swith back to last workspace
 workspace_auto_back_and_forth yes
 
-#bindsym Mod1+Tab exec ~/.config/sway/bin/tab-behavior.py
+# switch focus between floating window and tiling window
+bindsym $mod+Tab focus mode_toggle
 
 # move window between workspace
 bindsym $mod+Control+1 move container to workspace number 1; workspace number 1;
@@ -111,7 +117,6 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-bindsym $mod+Tab focus next
 
 # workspace switch
 bindsym $mod+1 workspace number 1

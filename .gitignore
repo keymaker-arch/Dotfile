@@ -1,0 +1,15 @@
+*
+!/.gitignore
+!/alacritty
+!/alacritty/*
+!/sway
+!/sway/*
+!/waybar
+!/waybar/*
+!/wofi
+!/wofi/*
+!/wallpapers
+!/wallpapers/*
+!/clash_bk
+!/clash_bk/*
+!Readme.md
