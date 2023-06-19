@@ -4,7 +4,7 @@
 set $mod Mod4
 
 # system font
-font pango Bold 8
+font Firacode Nerd 10
 
 set $left h
 set $down j
@@ -34,9 +34,17 @@ bar {
 # exec wl-paste -t text --watch clipman store
 # exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
 
-# idle behavior: lock screen in 10 min, suspend in 30 min if not charging [swayidle and swaylock needed]
-exec swayidle -w timeout 600 'swaylock -f -i $wallpeper2' 
-exec swayidle -w timeout 1800 '~/.config/sway/bin/suspend.sh'
+
+# idle behavior [swayidle and swaylock required]
+# lock screen in 10 min
+#exec swayidle -w timeout 600 'swaylock -f -i $wallpeper2' 
+
+# suspend in 30 min if not charging
+# exec swayidle -w timeout 1800 '~/.config/sway/bin/suspend.sh'
+
+# lock screen in 30 min, turn off screen in 60 min, no suspend
+exec swayidle -w timeout 1800 'swaylock -f -i '$wallpaper2'' timeout 3600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+
 
 # dbus env var, make waybar start immediately
 exec hash dbus-update-activation-environment 2>/dev/null && \
@@ -138,7 +146,7 @@ bindsym $mod+x move scratchpad
 bindsym $mod+s exec swaymsg scratchpad show || ~/.config/sway/bin/scratchpad.sh
 
 for_window [app_id="scratchpad"] {
-    floating enable,resize set 600 600
+    floating enable,resize set 800 800
 }
 
 ############################ cursor ############################

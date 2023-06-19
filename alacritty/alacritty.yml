@@ -42,7 +42,7 @@ font:
     family: FiraCode Nerd Font
     style: Bold Italic
 
-  size: 11.0
+  size: 10.0
 
   offset:
     x: 0
