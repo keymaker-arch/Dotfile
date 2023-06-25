@@ -8,21 +8,17 @@
         "all-outputs": false,
         "enable-bar-scroll": false,
         "format": "{icon}",
-        "persistent_workspaces": {
-            /* "7": [], 
-            "10": " ",󱍢 󰯈 󱓈 󱙝 󰹻 󰮠  󰈺 󰣘 󰻝 󰭟 󰄛 󰛓 󱃽 󱅻 󰘩 󰨞 󰒶 󰯉 󱇪 󱎷  󰈹      */
-        },
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "6": "",
-            "7": "",
-            "8": "",
-            "9": "",
-            "10": "",
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "0",
         },
     },
     "clock": {
@@ -35,56 +31,52 @@
             "critical": 15
         },
         "tooltip": false,
-        "format": "{icon}{capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-full": " {capacity}%",
-        "format-icons": ["", "", ""],
+        "format": "battery {capacity}%",
+        "format-charging": "charging {capacity}%",
+        "format-plugged": "plugged {capacity}%",
+        "format-full": "full {capacity}%",
         "max-length": 8,
     },
     "network": {
-        "format-wifi": " {essid}",
+        "format-wifi": "conn {essid}",
         "tooltip": false,
-        "format-ethernet": " {ipaddr}/{cidr}",
+        "format-ethernet": "eth {ipaddr}/{cidr}",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "",
+        "format-disconnected": "disconn",
         "format-disabled": "Disabled",
-        "max-length": 15,
+        "max-length": 30,
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "SND {volume}%",
         "tooltip": false,
-        "format-muted": "婢 Muted" ,
-        "format-bluetooth": " {volume}%",
-        "format-icons": {
-            "headphone": "",
-            "default": ["", "", ""],
-        },
+        "format-muted": "MUTED" ,
+        "format-bluetooth": "{volume}%"
     },
     "temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
         "critical-threshold": 70,
-        "format-critical": "{temperatureC}°C",
-        "format": " {temperatureC}°C"
+        "format-critical": "TEMP {temperatureC}°C",
+        "format": "TEMP {temperatureC}°C",
+	"interval": 1
     },
     "cpu": {
         "interval": 1,
-        "format": " {}%"
+        "format": "CPU {}%"
     },
     "memory": {
         "states": {
             "critical": 90,
         },
         "interval": 1,
-        "format": " {}%",
+        "format": "MEM {}%",
         "max-length": 8,
     },
     "disk": {
 	"interval": 30,
-	"format": " {percentage_used}%"
+	"format": "DISK {percentage_used}%"
     },
     "backlight": {
 	"device": "intel_backlight",
-	"format": " {percent}%"
+	"format": "BACKLIGHT {percent}%"
     }
 }

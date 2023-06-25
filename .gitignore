@@ -12,4 +12,7 @@
 !/wallpapers/*
 !/clash_bk
 !/clash_bk/*
+!/KEY_misc
+!/KEY_misc/*
+!/KEY_misc/win_smb_share/*
 !Readme.md
