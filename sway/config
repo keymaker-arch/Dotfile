@@ -64,7 +64,8 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 bindsym $mod+q exec ~/.config/sway/bin/kill-behavior.py
 bindsym $mod+d exec $menu
 bindsym $mod+t exec $term
-bindsym $mod+Ctrl+Mod1+l exec swaylock
+bindsym $mod+Ctrl+Shift+l exec swaylock -f -i '$wallpaper2'
+bindsym $mod+Ctrl+Shift+s exec swaylock -f -i '$wallpaper2' && sleep 1 && sudo systemctl suspend
 
 
 ############################ touchpad gesture ############################
@@ -175,8 +176,8 @@ bindswitch --reload --locked lid:on output eDP-1 disable
 bindswitch --reload --locked lid:off output eDP-1 enable
 
 # pakacge require: PulseAudio pulseaudio-alsa
-bindsym --locked XF86AudioRaiseVolume exec sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume @DEFAULT_SINK@ +2%"
-bindsym --locked XF86AudioLowerVolume exec sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume @DEFAULT_SINK@ -2%"
+bindsym --locked XF86AudioRaiseVolume exec sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume @DEFAULT_SINK@ +1%"
+bindsym --locked XF86AudioLowerVolume exec sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume @DEFAULT_SINK@ -1%"
 bindsym --locked XF86AudioMute exec sh -c "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
 bindsym --locked XF86MonBrightnessDown exec "sudo light -U 5"
@@ -192,23 +193,29 @@ output eDP-1 {
 }
 
 output 'Dell Inc. DELL P2723QE 4VZT9N3' {
-    # resolution 3840x2160
-    scale 2.0
-    pos 0 0
+    resolution 3840x2160
+    scale 1.5
+    pos 2560 0
     # bg ~/Downloads/wallpapers/city_from_sky.jpg fill
 }
 
+output 'XMI Redmi 27 NQ 33231Z0105726' {
+    resolution 2560x1440
+    scale 1
+    pos 0 0
+}
+
 # bind workspace to specific monitor
-workspace 1 output DP-1
-workspace 2 output DP-1
-workspace 3 output DP-1
-workspace 4 output DP-1
-workspace 5 output DP-1
-workspace 6 output DP-1
-workspace 7 output DP-1
-workspace 8 output DP-1
-workspace 9 output DP-1
-workspace 10 output eDP-1
+#workspace 1 output DP-1
+#workspace 2 output DP-1
+#workspace 3 output DP-1
+#workspace 4 output DP-1
+#workspace 5 output DP-1
+#workspace 6 output DP-1
+#workspace 7 output DP-1
+#workspace 8 output DP-1
+#workspace 9 output DP-1
+#workspace 10 output eDP-1
 
 
 ############################ border and gaps ############################
