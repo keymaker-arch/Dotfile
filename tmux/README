@@ -1,0 +1,5 @@
+link the config file to ~/ with the following command
+
+```
+ln -s ~/.config/tmux.conf ~/.tmux.conf
+```
