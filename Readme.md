@@ -250,7 +250,7 @@ reboot
 install the following package
 
 ```bash
-sudo pacman -S sway swayidle swaylock alacritty waybar wofi qt5-wayland glfw-wayland
+sudo pacman -S sway swayidle swaylock swaybg alacritty waybar wofi qt5-wayland glfw-wayland
 ```
 
 fonts
